@@ -3,4 +3,13 @@
     <type name="OAG\Blog\Model\ResourceModel\Post">
         <plugin name="oag_blog_post_url_rewrite_plugin" type="OAG\BlogUrlRewrite\Plugin\Model\ResourceModel\Post"/>
     </type>
+
+    <!-- Necessary to find and redirect to the correct url when user change store -->
+    <type name="Magento\Store\Model\StoreSwitcher">
+        <arguments>
+            <argument name="storeSwitchers" xsi:type="array">
+                <item name="oagBlogUrlRewriteStoreSwitcher" xsi:type="object">OAG\BlogUrlRewrite\Model\StoreSwitcher\RewriteUrl</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
