@@ -38,16 +38,11 @@ class PostProcessUrlRewriteSaving implements ObserverInterface
      */
     public function execute(EventObserver $observer)
     {
-        /** @var $cmsPage \Magento\Cms\Model\Page */
+        /** @var $cmsPage \OAG\Blog\Api\Data\PostInterface */
         $post = $observer->getEvent()->getEntity();
 
         if ($post->dataHasChangedFor(PostInterface::KEY_URL_KEY) || $post->dataHasChangedFor(PostInterface::KEY_STORE_ID)) {
             $urls = $this->postUrlRewriteGenerator->generate($post);
-
-            $this->urlPersist->deleteByData([
-                UrlRewrite::ENTITY_ID => $post->getId(),
-                UrlRewrite::ENTITY_TYPE => PostUrlRewriteGenerator::ENTITY_TYPE,
-            ]);
             $this->urlPersist->replace($urls);
         }
     }
