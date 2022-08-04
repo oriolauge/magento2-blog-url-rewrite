@@ -3,7 +3,7 @@ namespace OAG\BlogUrlRewrite\Model;
 use OAG\Blog\Api\Data\PostInterface;
 use Magento\Framework\Filter\FilterManager;
 use OAG\BlogUrlRewrite\Model\Config;
-use Magento\Store\Model\ScopeInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class PostUrlPathGenerator
 {
@@ -32,16 +32,23 @@ class PostUrlPathGenerator
     protected $blogRoute = [];
 
     /**
+     * @var StoreManagerInterface
+     */
+    protected $storeManager;
+
+    /**
      * Construct function
      *
      * @param FilterManager $filterManager
      */
     public function __construct(
         FilterManager $filterManager,
-        Config $config
+        Config $config,
+        StoreManagerInterface $storeManager
     ) {
         $this->filterManager = $filterManager;
         $this->config = $config;
+        $this->storeManager = $storeManager;
     }
 
     /**
