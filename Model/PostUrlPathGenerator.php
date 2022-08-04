@@ -2,7 +2,7 @@
 namespace OAG\BlogUrlRewrite\Model;
 use OAG\Blog\Api\Data\PostInterface;
 use Magento\Framework\Filter\FilterManager;
-use OAG\Blog\Model\Config;
+use OAG\BlogUrlRewrite\Model\Config;
 use Magento\Store\Model\ScopeInterface;
 
 class PostUrlPathGenerator
