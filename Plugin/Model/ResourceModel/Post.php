@@ -10,9 +10,9 @@ use OAG\BlogUrlRewrite\Model\PostUrlRewriteGenerator;
 use Magento\UrlRewrite\Model\UrlPersistInterface;
 
 /**
- * Before save and around delete plugin for \OAG\Blog\Model\ResourceModel\Post:
+ * Before save and after delete plugin for \OAG\Blog\Model\ResourceModel\Post:
  * - autogenerates url_key if the merchant didn't fill this field
- * - remove all url rewrites for cms page on delete
+ * - remove all url rewrites for post blog entitys on delete
  */
 class Post
 {
