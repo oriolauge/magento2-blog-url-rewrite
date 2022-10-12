@@ -78,10 +78,10 @@ class PostUrlPathGenerator
      * Generate post url with suffix and blog route
      *
      * @param PostInterface $post
-     * @param [type] $storeId
-     * @return void
+     * @param mixed $storeId
+     * @return string
      */
-    public function getUrlPathWithSuffixAndBlogRoute(PostInterface $post, $storeId = null)
+    public function getUrlPathWithSuffixAndBlogRoute(PostInterface $post, $storeId = null): string
     {
         return $this->getBlogRoute($storeId)
             . '/'

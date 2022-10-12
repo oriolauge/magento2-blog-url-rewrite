@@ -39,7 +39,7 @@ class Config
      * Get general blog route config value
      *
      * @param mixed $storeId
-     * @return void
+     * @return string
      */
     public function getBlogRoute($storeId = null)
     {
