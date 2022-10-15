@@ -1,11 +1,12 @@
 <?php
 namespace OAG\BlogUrlRewrite\Model;
 use OAG\Blog\Api\Data\PostInterface;
-use Magento\Framework\Filter\FilterManager;
+use OAG\BlogUrlRewrite\Model\AbstractUrlPathGenerator;
 use OAG\BlogUrlRewrite\Model\Config;
+use Magento\Framework\Filter\FilterManager;
 use Magento\Store\Model\StoreManagerInterface;
 
-class PostUrlPathGenerator
+class PostUrlPathGenerator extends AbstractUrlPathGenerator
 {
     /**
      * @var FilterManager
@@ -16,20 +17,6 @@ class PostUrlPathGenerator
      * @var Config
      */
     protected $config;
-
-    /**
-     * Cache for post rewrite suffix
-     *
-     * @var array
-     */
-    protected $postUrlSuffix = [];
-
-    /**
-     * Cache for blog route
-     *
-     * @var array
-     */
-    protected $blogRoute = [];
 
     /**
      * @var StoreManagerInterface
@@ -49,6 +36,7 @@ class PostUrlPathGenerator
         $this->filterManager = $filterManager;
         $this->config = $config;
         $this->storeManager = $storeManager;
+        parent::__construct($config, $storeManager);
     }
 
     /**
@@ -86,42 +74,6 @@ class PostUrlPathGenerator
         return $this->getBlogRoute($storeId)
             . '/'
             . $post->getUrlKey()
-            . $this->getPostUrlSuffix($storeId);
-    }
-
-    /**
-     * Retrieve post rewrite suffix for store
-     *
-     * @param int $storeId
-     * @return string
-     */
-    protected function getPostUrlSuffix($storeId = null)
-    {
-        if ($storeId === null) {
-            $storeId = $this->storeManager->getStore()->getId();
-        }
-
-        if (!isset($this->postUrlSuffix[$storeId])) {
-            $this->postUrlSuffix[$storeId] = $this->config->getPostSufix($storeId);
-        }
-        return $this->postUrlSuffix[$storeId];
-    }
-
-    /**
-     * Retrieve post rewrite suffix for store
-     *
-     * @param int $storeId
-     * @return string
-     */
-    protected function getBlogRoute($storeId = null)
-    {
-        if ($storeId === null) {
-            $storeId = $this->storeManager->getStore()->getId();
-        }
-
-        if (!isset($this->blogRoute[$storeId])) {
-            $this->blogRoute[$storeId] = $this->config->getBlogRoute($storeId);
-        }
-        return $this->blogRoute[$storeId];
+            . $this->getUrlSuffix($storeId);
     }
 }

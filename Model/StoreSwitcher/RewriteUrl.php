@@ -9,7 +9,7 @@ namespace OAG\BlogUrlRewrite\Model\StoreSwitcher;
 use Magento\Store\Api\Data\StoreInterface;
 use Magento\Store\Model\StoreSwitcherInterface;
 use Magento\Framework\HTTP\PhpEnvironment\RequestFactory;
-use OAG\BlogUrlRewrite\Model\Config;
+use OAG\BlogUrlRewrite\Model\MainBlogUrlPathGenerator;
 use Magento\Framework\UrlInterface;
 
 /**
@@ -23,9 +23,9 @@ class RewriteUrl implements StoreSwitcherInterface
     protected $requestFactory;
 
     /**
-     * @var Config
+     * @var MainBlogUrlPathGenerator
      */
-    protected $config;
+    protected $mainBlogUrlPathGenerator;
 
     /**
      * @var UrlInterface
@@ -34,16 +34,16 @@ class RewriteUrl implements StoreSwitcherInterface
 
     /**
      * @param RequestFactory $requestFactory
-     * @param Config $config
+     * @param MainBlogUrlPathGenerator $mainBlogUrlPathGenerator
      * @param UrlInterface $url
      */
     public function __construct(
         RequestFactory $requestFactory,
-        Config $config,
+        MainBlogUrlPathGenerator $mainBlogUrlPathGenerator,
         UrlInterface $url
     ) {
         $this->requestFactory = $requestFactory;
-        $this->config = $config;
+        $this->mainBlogUrlPathGenerator = $mainBlogUrlPathGenerator;
         $this->url = $url;
     }
 
@@ -73,14 +73,14 @@ class RewriteUrl implements StoreSwitcherInterface
         }
 
         //Check if we come from main blog page
-        $fromMainBlogUrl = $this->config->getBlogRoute($fromStore->getStoreId());
-        if (preg_match('#^' . $fromMainBlogUrl . '/?$#', $urlPath)) {
+        $fromMainBlogUrl = $this->mainBlogUrlPathGenerator->getMainBlogUrlPathWithSuffix($fromStore->getStoreId());
+        if (preg_match('#^' . $fromMainBlogUrl . '$#', $urlPath)) {
             /**
              * If we come from main blog page, we will redirect to correct configured
              * url in specific storeview
              */
-            $toMainBlogUrl = $this->config->getBlogRoute($targetStore->getStoreId());
-            return $this->url->getUrl('', ['_direct' => $toMainBlogUrl . '/']);
+            $toMainBlogUrl = $this->mainBlogUrlPathGenerator->getMainBlogUrlPathWithSuffix($targetStore->getStoreId());
+            return $this->url->getDirectUrl($toMainBlogUrl);
 
         }
         

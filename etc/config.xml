@@ -12,7 +12,7 @@
         <oag_blog>
             <permalink>
                 <route>blog</route>
-                <post_sufix>.html</post_sufix>
+                <url_sufix>.html</url_sufix>
             </permalink>
         </oag_blog>
     </default>
