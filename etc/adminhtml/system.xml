@@ -10,11 +10,11 @@
                     <backend_model>OAG\BlogUrlRewrite\Model\System\Config\Backend\Url\Route</backend_model>
                     <comment>E.g.: "blog" will make the blog accessible from mystore.com/blog</comment>
                 </field>
-                <field id="post_sufix" translate="label comment" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Post URL Suffix</label>
+                <field id="url_sufix" translate="label comment" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>URL Suffix</label>
                     <validate>required-entry no-whitespace</validate>
                     <backend_model>OAG\BlogUrlRewrite\Model\System\Config\Backend\Url\Suffix</backend_model>
-                    <comment>E.g.: ".html" will make the blog post accessible from mystore.com/{blog_route}/post-identifier.html</comment>
+                    <comment>E.g.: ".html" will make all blog pages accessible from mystore.com/{blog_route}/post-identifier.html or mystore.com/{blog_route}.html</comment>
                 </field>
             </group>
         </section>

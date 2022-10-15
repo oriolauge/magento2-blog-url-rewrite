@@ -16,9 +16,9 @@ class Config
     const XML_PATH_PERMALINK_ROUTE = 'oag_blog/permalink/route';
 
     /**
-     * Hold post sufix url config path
+     * Hold url sufix config path
      */
-    const XML_PATH_PERMALINK_POST_SUFIX = 'oag_blog/permalink/post_sufix';
+    const XML_PATH_PERMALINK_URL_SUFIX = 'oag_blog/permalink/url_sufix';
 
     /**
      * @var ScopeConfigInterface
@@ -50,15 +50,15 @@ class Config
     }
 
     /**
-     * Get post sufix url config value
+     * Get url sufix config value
      *
      * @param mixed $storeId
      * @return string
      */
-    public function getPostSufix($storeId = null): string
+    public function getUrlSufix($storeId = null): string
     {
         return $this->getConfig(
-            self::XML_PATH_PERMALINK_POST_SUFIX,
+            self::XML_PATH_PERMALINK_URL_SUFIX,
             $storeId
         );
     }

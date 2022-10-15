@@ -61,7 +61,7 @@ class Suffix extends Url
     protected function updateSuffixForUrlRewrites()
     {
         $map = [
-            Config::XML_PATH_PERMALINK_POST_SUFIX => PostUrlRewriteGenerator::ENTITY_TYPE,
+            Config::XML_PATH_PERMALINK_URL_SUFIX => PostUrlRewriteGenerator::ENTITY_TYPE,
         ];
         return $this->updateValueForUrlRewrites(
             $map,
