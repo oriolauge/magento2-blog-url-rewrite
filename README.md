@@ -7,10 +7,13 @@ This module adds all functionalitys to OAG Blog to use url rewrite and manage al
 - Stability: Stable Build
 
 ## Instalation guide
-TODO
+See OAG_Blog module instalation guide
+
+## Uninstalation guide
+See OAG_Blog module uninstalation guide
 
 ## Key Features
-TODO
+Manage blog urls with url rewrite Magento functionality
 
 ## Future Features
-TODO
+Add better controls when some post/product/category adds some url equal another blog url added previously
