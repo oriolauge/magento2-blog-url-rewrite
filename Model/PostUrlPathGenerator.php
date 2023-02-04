@@ -51,7 +51,7 @@ class PostUrlPathGenerator extends AbstractUrlPathGenerator
     }
 
     /**
-     * Generate CMS page url key based on url_key entered by merchant or page title
+     * Generate Post page url key based on url_key entered by merchant or page title
      *
      * @param PostInterface $post
      * @return string
