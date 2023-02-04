@@ -50,15 +50,13 @@ class Post
         PostResourceModel $subject,
         AbstractModel $object
     ) {
-        /** @var $object \Magento\Cms\Model\Page */
-        $urlKey = $object->getData(PostInterface::KEY_URL_KEY);
         $useDefaultValue = !empty($object->getData('use_default')[PostInterface::KEY_URL_KEY]);
-        if (empty($urlKey) && !$useDefaultValue) {
+        if (!$useDefaultValue) {
             $object->setData(
                 PostInterface::KEY_URL_KEY
                 , $this->postUrlPathGenerator->generateUrlKey($object)
             );
-        } else if ($useDefaultValue) {
+        } else {
             $object->setData(PostInterface::KEY_URL_KEY, null);
         }
     }
