@@ -7,7 +7,7 @@
         "magento/framework": "103.0.*",
         "magento/module-store": "101.1.*",
         "magento/module-url-rewrite": "102.0.*",
-        "oag/module-blog": "dev-feature/upgrade_to_magento_2_4_7"
+        "oag/module-blog": "1.*"
     },
     "autoload": {
         "files": [
