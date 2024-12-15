@@ -5,6 +5,7 @@ use OAG\BlogUrlRewrite\Model\AbstractUrlPathGenerator;
 use OAG\BlogUrlRewrite\Model\Config;
 use Magento\Framework\Filter\FilterManager;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Store\Model\Store;
 
 class PostUrlPathGenerator extends AbstractUrlPathGenerator
 {
@@ -71,9 +72,16 @@ class PostUrlPathGenerator extends AbstractUrlPathGenerator
      */
     public function getUrlPathWithSuffixAndBlogRoute(PostInterface $post, $storeId = null): string
     {
+        $url = $post->getUrlKey();
+        //Some times, you need to get url key from different loaded post, for example, hreflang
+        if (is_numeric($storeId)
+            && $storeId != Store::DEFAULT_STORE_ID
+            && $post->getStoreId() !== $storeId) {
+            $url = $post->getUrlKeyByStoreId($storeId);
+        }
         return $this->getBlogRoute($storeId)
             . '/'
-            . $post->getUrlKey()
+            . $url
             . $this->getUrlSuffix($storeId);
     }
 }
